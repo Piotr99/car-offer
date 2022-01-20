@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<style>
+		body{
+			font-size: 25px;
+			background-color: #000;
+			color:#fff;
+		}
+		#info{
+			color:red;
+		}
+</style>
+</head>
+<body>
+	<h1>Sprzedaż samochodu</h1>
+	Podaj markę <input type="text" id="marka"><br>
+	Podaj model <input type="text" id="model"><br>
+	<button id="submit">Potwierdź</button>
+	<span id="info"></span><br>
+	<span id="text"></span>
+<script>
+	const text = document.getElementById("text");
+	const pb95 = 4;
+	function Oferta(marka, model, cena, spalanie, rocznik){
+		this.marka = marka;
+		this.model = model;
+		this.rocznik = rocznik;
+		this.cena = cena;
+		this.spalanie = spalanie;
+		this.koszt = function(){
+			return this.spalanie * pb95;
+		};
+		this.wiekSamochodu = function(){
+const data = new Date().getFullYear();
+let wiek = data - rocznik + " ";
+if(wiek == 1){
+	wiek+= "rok";
+}else if(wiek <5){
+	wiek+= "lata";
+}else if(wiek <=20){
+	wiek+= "lat";
+}
+return wiek;
+		}
+	}
+	let marka = document.getElementById("marka");
+	let  model = document.getElementById("model");
+	const submit = document.getElementById("submit");
+	
+const Komis = {
+	oferta: new Oferta(marka.value, model.value, 3000, 3, 2020),
+}
+for(let idOferty of Object.keys(Komis)){
+	submit.addEventListener('click', function(){
+		
+		if(marka.value == false || model.value ==false){
+document.getElementById("info").textContent = "Wpisz potrzebne dane";
+		}else{
+			wypiszOferte(idOferty)
+	text.innerHTML += wypiszOferte(idOferty);
+			function wypiszOferte(idOferty){
+				document.getElementById("info").textContent = "";
+				
+			let opisOferty=`<span> Marka samochodu: ${Komis[idOferty].marka = marka.value}, model pojazdu: ${Komis[idOferty].model = model.value}, cena za to auto: ${Komis[idOferty].cena}<br><hr>`;
+				return opisOferty
+		}}
+		
+		})
+	
+}
+	
+	
+
+		
+
+
+
+
+
+
+</script>
+</body>
+</html>
