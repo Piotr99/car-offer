@@ -14,17 +14,28 @@
 		#info{
 			color:red;
 		}
+        .inputs{
+            justify-items: center;
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+        }
+
 </style>
 </head>
 <body>
 	<h1>Sprzedaż samochodu</h1>
+    <div class="inputs">
 	Podaj markę <input type="text" id="marka"><br>
 	Podaj model <input type="text" id="model"><br>
+</div>
+    0 <input type="range" id="suwak" min="0" max="10000" value="5000">10k $  <span id="price"> </span><br>
 	<button id="submit">Potwierdź</button>
 	<span id="info"></span><br>
 	<span id="text"></span>
 <script>
 	const text = document.getElementById("text");
+    let suwak = document.getElementById("suwak");
 	const pb95 = 4;
 	function Oferta(marka, model, cena, spalanie, rocznik){
 		this.marka = marka;
@@ -51,38 +62,32 @@ return wiek;
 	let marka = document.getElementById("marka");
 	let  model = document.getElementById("model");
 	const submit = document.getElementById("submit");
+    const price = document.getElementById("price");
 	
 const Komis = {
-	oferta: new Oferta(marka.value, model.value, 3000, 3, 2020),
+	oferta: new Oferta(marka, model, suwak, 3, 2020),
 }
 for(let idOferty of Object.keys(Komis)){
+    suwak.addEventListener("input", function(){
+        price.textContent =`Aktualna cena to:  ${suwak.value}`;
+       
+    })
 	submit.addEventListener('click', function(){
 		
 		if(marka.value == false || model.value ==false){
-document.getElementById("info").textContent = "Wpisz potrzebne dane";
+			document.getElementById("info").textContent = "Wpisz potrzebne dane";
 		}else{
 			wypiszOferte(idOferty)
-	text.innerHTML += wypiszOferte(idOferty);
+			text.innerHTML += wypiszOferte(idOferty);
 			function wypiszOferte(idOferty){
 				document.getElementById("info").textContent = "";
 				
-			let opisOferty=`<span> Marka samochodu: ${Komis[idOferty].marka = marka.value}, model pojazdu: ${Komis[idOferty].model = model.value}, cena za to auto: ${Komis[idOferty].cena}<br><hr>`;
+				let opisOferty=`<span> Marka samochodu: ${Komis[idOferty].marka = marka.value}, model pojazdu: ${Komis[idOferty].model = model.value}, cena za to auto: ${Komis[idOferty].suwak = suwak.value}<br><hr>`;
 				return opisOferty
 		}}
-		
 		})
-	
+
 }
-	
-	
-
-		
-
-
-
-
-
-
 </script>
 </body>
 </html>
